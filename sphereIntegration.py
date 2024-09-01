@@ -50,7 +50,7 @@ while cache1 < angle1.size or cache2 < angle2.size:
 		angle = np.append(angle, angle2[cache2])
 		irradiance = np.append(irradiance, irradiance2[cache2])
 		cache2 = cache2 + 1
-# interpolation and integration
+# interpolation 
 interp_angle = np.linspace(0.01, np.pi-0.01, 100)
 interp_irradiance = np.zeros(100)
 
@@ -65,7 +65,20 @@ for i in range(np.size(interp_angle)):
 													 (irradiance[j] - irradiance[j-1])
 			break
 
-
 # plot the values vs angle
-plt.plot(interp_angle, interp_irradiance)
-plt.show()
+#plt.plot(interp_angle, interp_irradiance)
+#plt.show()
+
+# integration in the spherical coordinate
+jacobian = 2 * np.pi / np.size(interp_angle)
+direct_integration = 0
+angular_integration = 0
+for i in range(np.size(interp_angle)):
+	direct_integration = direct_integration + \
+						 2 * np.pi * np.sin(interp_angle[i]) * interp_irradiance[i] * jacobian
+	angular_integration = angular_integration + \
+						  2 * np.pi * np.sin(interp_angle[i]) * np.cos(interp_angle[i]) * interp_irradiance[i] * jacobian
+
+print(direct_integration, angular_integration)
+
+	
