@@ -2,16 +2,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('arm.txt', delimiter='\t')
-data2 = np.loadtxt('floor.txt', delimiter='\t')
+data1 = np.loadtxt('BPD_arm.txt', delimiter='\t')
+data2 = np.loadtxt('BPD_floor.txt', delimiter='\t')
 
 
 
-radius1 = 145 # in mm
-radius2 = 150
+radius1 = 165 # in mm
+radius2 = 49 * 25.4
 area = np.pi * (9.5 / 2) ** 2;
 
-# calculate the actual angle
+# calculate the actual angle and irradiance
 cache = 0
 angle1 = np.array([])
 for v in data1[:,0]:
@@ -66,8 +66,8 @@ for i in range(np.size(interp_angle)):
 			break
 
 # plot the values vs angle
-#plt.plot(interp_angle, interp_irradiance)
-#plt.show()
+plt.plot(interp_angle, interp_irradiance)
+plt.show()
 
 # integration in the spherical coordinate
 jacobian = 2 * np.pi / np.size(interp_angle)
