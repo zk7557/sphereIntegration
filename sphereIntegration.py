@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('BPD_arm.txt', delimiter='\t')
-data2 = np.loadtxt('BPD_floor.txt', delimiter='\t')
+data1 = np.loadtxt('CTL_arm.txt', delimiter='\t')
+data2 = np.loadtxt('CTL_floor.txt', delimiter='\t')
 
 
 
@@ -50,17 +50,24 @@ while cache1 < angle1.size or cache2 < angle2.size:
 		angle = np.append(angle, angle2[cache2])
 		irradiance = np.append(irradiance, irradiance2[cache2])
 		cache2 = cache2 + 1
+		
+
+# check the result
+for i in range(np.size(angle)):
+	print(i, angle[i], irradiance[i])
+
+
 # interpolation 
-interp_angle = np.linspace(0.01, np.pi-0.01, 100)
-interp_irradiance = np.zeros(100)
+interpolation_instance = 100
+interp_angle = np.linspace(0.01, np.pi-0.01, interpolation_instance)
+interp_irradiance = np.zeros(interpolation_instance)
 
 for i in range(np.size(interp_angle)):
 	cache = 0
 	for j in range(np.size(angle)):
 		cache = cache + 1
-		#print(interp_angle[i], angle[j])
 		if interp_angle[i] < angle[j]:
-			interp_irradiance[i] = irradiance[j] + (interp_angle[i] - angle[j-1]) / \
+			interp_irradiance[i] = irradiance[j-1] + (interp_angle[i] - angle[j-1]) / \
 													 (angle[j] - angle[j-1]) * \
 													 (irradiance[j] - irradiance[j-1])
 			break
