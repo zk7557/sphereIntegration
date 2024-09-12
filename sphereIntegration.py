@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 data1 = np.loadtxt('CTL_arm.txt', delimiter='\t')
 data2 = np.loadtxt('CTL_floor.txt', delimiter='\t')
 
+#data1 = np.loadtxt('BPD_arm.txt', delimiter='\t')
+#data2 = np.loadtxt('BPD_floor.txt', delimiter='\t')
 
 
 radius1 = 165 # in mm
