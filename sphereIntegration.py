@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('CTL_arm.txt', delimiter='\t')
-data2 = np.loadtxt('CTL_floor.txt', delimiter='\t')
+data1 = np.loadtxt('BPD_arm.txt', delimiter='\t')
+data2 = np.loadtxt('BPD_floor.txt', delimiter='\t')
 
 #data1 = np.loadtxt('BPD_arm.txt', delimiter='\t')
 #data2 = np.loadtxt('BPD_floor.txt', delimiter='\t')
@@ -55,8 +55,8 @@ while cache1 < angle1.size or cache2 < angle2.size:
 		
 
 # check the result
-for i in range(np.size(angle)):
-	print(i, angle[i], irradiance[i])
+#for i in range(np.size(angle)):
+#	print(i, angle[i], irradiance[i])
 
 
 # interpolation 
@@ -73,6 +73,11 @@ for i in range(np.size(interp_angle)):
 													 (angle[j] - angle[j-1]) * \
 													 (irradiance[j] - irradiance[j-1])
 			break
+
+# show the values
+for i in range(np.size(interp_angle)):
+	print(interp_angle[i]*180/np.pi, interp_irradiance[i])
+
 
 # plot the values vs angle
 plt.plot(interp_angle, interp_irradiance)
