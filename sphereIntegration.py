@@ -19,14 +19,14 @@ angle1 = np.array([])
 for v in data1[:,0]:
 	cache = cache + v / radius1
 	angle1 = np.append(angle1, cache)
-irradiance1 = data1[:,1] / area * radius1
+irradiance1 = data1[:,1] / area * radius1 * radius1
 	
 cache = 0
 angle2 = np.array([])
 for v in data2[:,0]:
 	cache = cache + v / radius2
 	angle2 = np.append(angle2, cache)
-irradiance2 = data2[:,1] / area * radius2
+irradiance2 = data2[:,1] / area * radius2 * radius2
 
 # combine the values
 angle = np.array([])
